@@ -1,5 +1,6 @@
 package org.spring.academy.cashcard;
 
+import org.springframework.data.web.JsonPath;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
@@ -31,9 +32,14 @@ public class CashCardController {
     private ResponseEntity<Void> createCashCard(@RequestBody CashCard cashCard, UriComponentsBuilder ubc) {
         CashCard savedCard=cashCardRepository.save(cashCard);
         URI location=ubc.path("cashcards/{id}")
-                         .buildAndExpand(savedCard.getId())
+                         .buildAndExpand(savedCard.id())
                          .toUri();
         return ResponseEntity.created(location).build();
+    }
+    @GetMapping()
+    public ResponseEntity<Iterable<CashCard>> findAll(){
+        return ResponseEntity.ok(cashCardRepository.findAll());
+
     }
     /*
      @PostMapping("/cashcards")
