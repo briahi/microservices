@@ -6,8 +6,7 @@ plugins {
 
 group = 'com.academy.cashcard'
 version = '0.0.1-SNAPSHOT'
-sourceCompatibility = '11'
-
+sourceCompatibility = JavaVersion.VERSION_17
 repositories {
     mavenCentral()
 }
@@ -18,6 +17,8 @@ dependencies {
 
     implementation 'org.springframework.data:spring-data-jdbc'
     testImplementation 'com.h2database:h2'
+
+    implementation 'org.springframework.boot:spring-boot-starter-security'
 }
 
 tasks.named('test') {
@@ -35,3 +36,4 @@ test {
         showStandardStreams = true
     }
 }
+targetCompatibility = JavaVersion.VERSION_17
